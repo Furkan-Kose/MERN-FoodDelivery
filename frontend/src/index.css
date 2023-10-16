@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+    --tw-bg-opacity: 1;
+    background: linear-gradient(to bottom, 
+      /* rgb(239 68 68 / var(--tw-bg-opacity)),  */
+      rgb(249 115 22 / var(--tw-bg-opacity)),
+      #fff, 
+      rgb(55 65 81 / var(--tw-bg-opacity))
+    );
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+
+  
+  
+  
