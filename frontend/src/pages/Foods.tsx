@@ -1,8 +1,23 @@
 import { categories } from "../data"
-import { foods } from "../data"
+// import { foods } from "../data"
 import { Link } from "react-router-dom"
 
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllFoodsAsync } from "../redux/foodSlice"
+import { RootState } from "../redux/store"
+import { DispatchType } from "../redux/store"
+import { FoodType } from "../types"
+
 const Foods = () => {
+
+  const dispatch = useDispatch<DispatchType>();
+
+  const foods = useSelector((state: RootState) => state.food.foods)
+
+  useEffect(() => {
+    dispatch(getAllFoodsAsync())
+  }, [dispatch])
 
   return (
     <div className="flex">
@@ -21,9 +36,9 @@ const Foods = () => {
 
       <div className="w-4/5 p-4 flex flex-wrap gap-4 items-center justify-center">
         {
-          foods.map((food) => (
+          foods.map((food: FoodType) => (
             <div className="flex flex-col bg-white w-[14rem] p-4 gap-2">
-              <Link to="/food/1">
+              <Link to={`/food/${food.id}`}>
                 <img className="cursor-pointer" src={food.image} alt={food.name} />
               </Link>
               <h3 className="text-center text-xl font-medium">{food.name}</h3>

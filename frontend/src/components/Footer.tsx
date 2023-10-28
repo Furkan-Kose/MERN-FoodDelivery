@@ -1,4 +1,5 @@
 import { FaFacebookSquare, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,11 +10,11 @@ const Footer = () => {
         </div>
         <p className="text-sm text-gray-400">© 2023 Tüm hakları saklıdır.</p>
         <div className="mt-4">
-          <a href="#" className="text-gray-300 hover:text-white transition">Gizlilik Politikası</a>
+          <Link to="/" className="text-gray-300 hover:text-white transition">Ana Sayfa</Link>
           <span className="mx-2">|</span>
-          <a href="#" className="text-gray-300 hover:text-white transition">Kullanım Şartları</a>
+          <Link to="/foods" className="text-gray-300 hover:text-white transition">Yemekler</Link>
           <span className="mx-2">|</span>
-          <a href="#" className="text-gray-300 hover:text-white transition">İletişim</a>
+          <Link to="/contact" className="text-gray-300 hover:text-white transition">İletişim</Link>
         </div>
         <div className="mt-4 flex items-center justify-center">
           <a href="#" className="text-gray-300 hover:text-white transition">

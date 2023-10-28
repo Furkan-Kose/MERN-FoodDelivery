@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { AiOutlineShoppingCart, AiOutlineSearch, AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
+import Logout from './Logout';
 
 const Navbar = () => {
   const [isDropdownUserOpen, setDropdownUserOpen] = useState(false);
   const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(4);
+
+  const user = false
 
   const toggleDropdownUser = () => {
     setDropdownUserOpen(!isDropdownUserOpen);
@@ -55,8 +58,18 @@ const Navbar = () => {
             <AiOutlineUser />
             {isDropdownUserOpen && (
               <div className='absolute top-16 right-0 xl:right-[5.5rem] w-40 bg-orange-500 text-white shadow-md z-10 opacity-75 text-center text-lg'>
-                <Link to="/login" className='block p-2 hover:bg-gray-700'>Giriş Yap</Link>
-                <Link to="/register" className='block p-2 hover:bg-gray-700'>Kayıt Ol</Link>
+                {user ? (
+                  <>
+                    <Link to="/profile" className='block p-2 hover:bg-gray-700'>Profil</Link>
+                    <Logout/>
+                  </>
+                  ) : (
+                    <>
+                      <Link to="/login" className='block p-2 hover:bg-gray-700'>Giriş Yap</Link>
+                      <Link to="/register" className='block p-2 hover:bg-gray-700'>Kayıt Ol</Link>
+                    </>
+                  )
+                }
               </div>
             )}
           </div>

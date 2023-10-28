@@ -11,7 +11,14 @@ const Foods = ({selectedCategoryIndex}: FoodsProps) => {
 
   return (
     <div className="bg-slate-200">
-        <h2 className="text-3xl font-semibold p-4 bg-white text-orange-500 text-center">{selectedCategory.name}</h2>
+        <h2 
+          style={{
+            background: 'linear-gradient(to right, white, rgb(249 115 22 / var(--tw-bg-opacity)), white)'
+          }} 
+          className="text-3xl font-semibold p-4  text-white text-center"
+        >
+          {selectedCategory.name}
+        </h2>
         <div className="flex w-full gap-8 flex-wrap p-4">
           {
             foods.map((food) => (

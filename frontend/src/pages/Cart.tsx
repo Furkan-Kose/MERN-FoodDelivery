@@ -51,9 +51,9 @@ const Cart = () => {
                 <p className="text-sm">Burger</p>
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center border border-orange-500 py-[0.2rem] px-2 rounded-full">
               <button onClick={decrement} className="text-bold text-orange-500 bg-white w-8 h-8 text-xl rounded-lg" >-</button>
-              <p className="text-lg mx-4">{quantity}</p>
+              <p className="text-lg mx-4 bg-orange-500 rounded-full px-2 text-white">{quantity}</p>
               <button onClick={increment} className="text-bold text-green-500 bg-white w-8 h-8 text-xl rounded-lg" >+</button>
             </div>
             <div className="flex items-center text-lg">{quantity * 20} $</div>
@@ -69,9 +69,9 @@ const Cart = () => {
                 <p className="text-sm">Burger</p>
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center border border-orange-500 py-[0.2rem] px-2 rounded-full">
               <button onClick={decrement} className="text-bold text-orange-500 bg-white w-8 h-8 text-xl rounded-lg" >-</button>
-              <p className="text-lg mx-4">{quantity}</p>
+              <p className="text-lg mx-4 bg-orange-500 rounded-full px-2 text-white">{quantity}</p>
               <button onClick={increment} className="text-bold text-green-500 bg-white w-8 h-8 text-xl rounded-lg" >+</button>
             </div>
             <div className="flex items-center text-lg">{quantity * 20} $</div>
