@@ -4,10 +4,14 @@
 export interface Category {
     id: number;
     name: string;
-    image: string;
+    image?: string;
   }
   
   export const categories: Category[] = [
+    {
+      id: 0,
+      name: 'Tüm Yemekler',
+    },
     {
       id: 1,
       name: 'Burger',
@@ -109,4 +113,6 @@ export interface Category {
       image: 'https://thumbs.dreamstime.com/b/slice-cheesecake-blackberry-syrup-mint-leaf-cutout-png-transparent-background-slice-cheesecake-blackberry-276141911.jpg',
     },
   ];
+
+  
   

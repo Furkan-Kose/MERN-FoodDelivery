@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineShoppingCart, AiOutlineSearch, AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
 import Logout from './Logout';
@@ -7,6 +7,9 @@ const Navbar = () => {
   const [isDropdownUserOpen, setDropdownUserOpen] = useState(false);
   const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(4);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const navigate = useNavigate();
 
   const user = false
 
@@ -17,6 +20,10 @@ const Navbar = () => {
   const toggleDropdownMenu = () => {
     setDropdownMenuOpen(!isDropdownMenuOpen);
   };
+
+  const handleSearch = (searchTerm: string) => {
+    navigate(`/foods?search=${searchTerm}`);
+  }
 
   return (
     <div className='bg-orange-500 text-white'>
@@ -43,8 +50,15 @@ const Navbar = () => {
         </div>
         <div className='flex items-center space-x-4 text-lg'>
           <div className='flex items-center justify-center bg-white text-black py-1 px-2 rounded-xl'>
-            <input className='outline-none max-md:w-32' type="text" placeholder='Search...' />
-            <AiOutlineSearch className='' />
+            <input 
+              className='outline-none max-md:w-32' 
+              type="text" 
+              placeholder='Search...' 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch(searchTerm)}  
+            />
+            <span onClick={()=>handleSearch(searchTerm)}><AiOutlineSearch/></span> 
           </div>
           <Link className='text-3xl relative' to="/cart">
             <AiOutlineShoppingCart />
