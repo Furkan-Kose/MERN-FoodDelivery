@@ -13,7 +13,7 @@ export const getAllFoods = async (queryParams: { category?: string; query?: stri
   }
 };
 
-export const getFoodById = async (id: number) => {
+export const getFoodById = async (id: string) => {
   try {
     const response = await axios.get(`${baseURL}/food/${id}`);
     return response.data;

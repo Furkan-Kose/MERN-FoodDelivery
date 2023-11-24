@@ -1,6 +1,3 @@
-// data.ts
-
-// Kategoriler
 export interface Category {
     id: number;
     name: string;
@@ -29,7 +26,6 @@ export interface Category {
     },
   ];
   
-  // Yemekler
   export interface Food {
     id: number;
     category: string;

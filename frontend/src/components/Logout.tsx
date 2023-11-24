@@ -1,17 +1,26 @@
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Logout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    // Kullanıcı bilgilerini temizle
     dispatch(setUser(null));
-
-    // Başka bir sayfaya yönlendirebilirsiniz (örneğin, giriş sayfasına)
     navigate('/login')
+    
+    toast.success('Çıkış başarılı!', {
+      position: 'bottom-right',
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   return (

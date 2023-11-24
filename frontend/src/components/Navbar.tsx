@@ -2,16 +2,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineShoppingCart, AiOutlineSearch, AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
 import Logout from './Logout';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const Navbar = () => {
   const [isDropdownUserOpen, setDropdownUserOpen] = useState(false);
   const [isDropdownMenuOpen, setDropdownMenuOpen] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(4);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const cart = useSelector((state: RootState) => state.cart)
+  const quantity = cart.foods.length
+  const dispatch = useDispatch()
   const navigate = useNavigate();
-
-  const user = false
+  const user = useSelector((state: RootState) => state.user.user)
 
   const toggleDropdownUser = () => {
     setDropdownUserOpen(!isDropdownUserOpen);
@@ -62,9 +65,9 @@ const Navbar = () => {
           </div>
           <Link className='text-3xl relative' to="/cart">
             <AiOutlineShoppingCart />
-            {cartItemCount > 0 && (
+            {quantity > 0 && (
               <span className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium opacity-75">
-                {cartItemCount}
+                {quantity}
               </span>
             )}
           </Link>
@@ -90,7 +93,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      
     </div>
   );
 }

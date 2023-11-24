@@ -4,12 +4,13 @@ export type FoodType = {
     description: string;
     price: number;
     image: string;
-    id: string;
+    _id: string;
+    quantity: number;
 }
 
 export type UserType = {
     username?: string;
     email?: string;
-    password?: string;
-  }
+    password: string;
+}
   

@@ -1,10 +1,11 @@
 import Categories from "../components/Categories"
 import Slider from "../components/Slider"
 import Foods from "../components/Foods"
+import { categories } from "../data";
 
 const Home = () => {
 
-  const selectedCategoryIndices: number[] = [0, 1, 2];
+  const selectedCategoryIndices: number[] = Array.from({ length: categories.length }, (_, index) => index);
 
   return (
     <div>

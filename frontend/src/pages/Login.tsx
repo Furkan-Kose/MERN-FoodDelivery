@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../services/userService';
 import { setUser } from '../redux/userSlice';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,24 +13,38 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // Kullanıcı giriş bilgilerini al
       const userData = {
         email,
         password,
       };
 
-      // Giriş yapma isteğini gönder
       const response = await login(userData);
-
-      // Giriş başarılı ise Redux store'a kullanıcı bilgilerini ekleyin
       dispatch(setUser(response));
-
-      // Başka bir sayfaya yönlendirme yapabilirsiniz
       navigate('/');
+
+      toast.success('Giriş başarılı!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
       
     } catch (error) {
       console.error('Giriş sırasında bir hata oluştu:', error);
-      // Hata durumunda kullanıcıya uygun geri bildirim verilebilir
+      toast.error('Giriş sırasında bir hata oluştu!', {
+        position: 'bottom-right',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 

@@ -9,7 +9,7 @@ export const getAllFoodsAsync = createAsyncThunk('foods/getAllFoods', async (que
   }
 });
 
-export const getFoodByIdAsync = createAsyncThunk('foods/getFoodById', async (foodId: number) => {
+export const getFoodByIdAsync = createAsyncThunk('foods/getFoodById', async (foodId: string) => {
   try {
     return await foodService.getFoodById(foodId);
   } catch (error) {
