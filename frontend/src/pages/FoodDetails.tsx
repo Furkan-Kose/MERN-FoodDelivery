@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addFoodToCart } from '../redux/cartSlice';
-import { getFoodByIdAsync } from '../redux/foodSlice'; // Import the Food type
 import { useLocation } from 'react-router-dom';
-import { DispatchType, RootState } from '../redux/store';
+import { DispatchType } from '../redux/store';
 import { FoodType } from '../types';
 import { toast } from 'react-toastify';
+import { getFoodById } from '../services/foodService';
 
 const FoodDetails = () => {
   const [quantity, setQuantity] = useState(1);
+  const [food, setFood] = useState<FoodType | null>(null);
   const location = useLocation();
   const foodId = location.pathname.split('/')[2];
-
-  const food = useSelector((state: RootState) => state.food.food) as FoodType | null;
-
   const dispatch = useDispatch<DispatchType>();
 
   useEffect(() => {
-    dispatch(getFoodByIdAsync(foodId));
-  }, [foodId, dispatch]);
+    const fetchData = async () => {
+      try {
+        const response = await getFoodById(foodId);
+        setFood(response);
+      } catch (error) {
+        console.error('Veri alınamadı:', error);
+      }
+    }
+
+    fetchData();
+  }, [foodId]);
 
   const handleQuantity = (type: 'dec' | 'inc') => {
     if (type === 'dec' && quantity > 1) {
@@ -33,7 +40,7 @@ const FoodDetails = () => {
       dispatch(addFoodToCart({ food, quantity }));
       toast.success(`${food.name} sepete eklendi!`, {
         position: "bottom-right",
-        autoClose: 1500,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
@@ -45,7 +52,7 @@ const FoodDetails = () => {
   };
 
   return (
-    <div className="flex p-8">
+    <div className="flex p-8 max-w-[1440px] bg-slate-200 mx-auto">
       {food && (
         <img className="w-1/2" src={food.image} alt={food.name} />
       )}

@@ -8,7 +8,7 @@ const Home = () => {
   const selectedCategoryIndices: number[] = Array.from({ length: categories.length }, (_, index) => index);
 
   return (
-    <div>
+    <div className="max-w-[1440px] bg-slate-200 mx-auto">
       <Slider />
       <Categories />
       {selectedCategoryIndices.map((index) => (

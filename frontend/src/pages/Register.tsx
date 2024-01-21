@@ -18,6 +18,7 @@ const Register = () => {
         email,
         password,
         username,
+        _id:""
       };
 
       const response = await register(userData);
@@ -26,7 +27,7 @@ const Register = () => {
 
       toast.success('Kayıt başarılı!', {
         position: 'bottom-right',
-        autoClose: 1500,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
@@ -39,7 +40,7 @@ const Register = () => {
       console.error('Kayıt sırasında bir hata oluştu:', error);
       toast.error('Kayıt sırasında bir hata oluştu!', {
         position: 'bottom-right',
-        autoClose: 1500,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: false,
@@ -51,7 +52,7 @@ const Register = () => {
   };
 
   return (
-    <div className="p-32">
+    <div className="p-20 max-w-[1440px] min-h-[630px] bg-slate-200 mx-auto">
       <form className="bg-white w-1/2 mx-auto rounded-xl p-8 flex flex-col gap-4">
         <h2 className="text-3xl font-semibold text-center">Kayıt Ol</h2>
         <div className="flex flex-col w-3/4 mx-auto">

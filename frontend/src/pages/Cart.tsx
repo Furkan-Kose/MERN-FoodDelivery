@@ -30,7 +30,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex max-w-[1440px] min-h-[630px] bg-slate-200 mx-auto">
       <div className="w-3/5 bg-white py-8 px-16">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl">Sepet</h2>

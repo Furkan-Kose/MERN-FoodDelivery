@@ -8,6 +8,7 @@ const Logout = () => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
+    localStorage.removeItem('userData');
     dispatch(setUser(null));
     navigate('/login')
     

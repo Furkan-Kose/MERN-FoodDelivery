@@ -23,4 +23,52 @@ export const login = async (userData: UserType) => {
   }
 }
 
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/users`);
+    return response.data;
+  } catch (error) {
+    console.error('Kullanıcıları getirme işlemi sırasında bir hata oluştu:', error);
+    throw error;
+  }
+};
 
+export const createUser = async (user: UserType) => {
+  try {
+    const response = await axios.post(`${baseURL}/user`, user);
+    return response.data;
+  } catch (error) {
+    console.error('Kullanıcı oluşturma işlemi sırasında bir hata oluştu:', error);
+    throw error;
+  }
+}
+
+export const updateUser = async (id: string, user: UserType) => {
+  try {
+    const response = await axios.put(`${baseURL}/user/${id}`, user);
+    return response.data;
+  } catch (error) {
+    console.error('Kullanıcı güncelleme işlemi sırasında bir hata oluştu:', error);
+    throw error;
+  }
+}
+
+export const getUserById = async (id: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/user/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Kullanıcı getirme işlemi sırasında bir hata oluştu:', error);
+    throw error;
+  }
+}
+
+export const deleteUser = async (id: string) => {
+  try {
+    const response = await axios.delete(`${baseURL}/user/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Kullanıcı silme işlemi sırasında bir hata oluştu:', error);
+    throw error;
+  }
+}

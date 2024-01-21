@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { getAllFoods } from "../services/foodService";
 import { toast } from "react-toastify";
 
-interface FoodsProps {
+type FoodsProps = {
   selectedCategoryIndex: number;
 }
 

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-700 p-8 text-white">
-      <div className="container mx-auto flex flex-col items-center">
+    <footer className="bg-gray-700 p-8 text-white max-w-[1440px] mx-auto">
+      <div className="flex flex-col items-center">
         <div className="flex items-center mb-4">
           <h2 className="text-2xl font-bold ml-2">RESTAURANT</h2>
         </div>

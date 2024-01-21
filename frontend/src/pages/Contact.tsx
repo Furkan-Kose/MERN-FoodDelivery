@@ -4,7 +4,7 @@ import { AiOutlineMail } from 'react-icons/ai'
 
 const Contact = () => {
   return (
-    <div className="flex">
+    <div className="flex max-w-[1440px] min-h-[630px] bg-slate-200 mx-auto">
       <div className="w-1/2 bg-white flex justify-center flex-col p-32">
         <h2 className="text-2xl font-semibold mb-4">İletişime Geçin</h2>
         <p className='text-sm font-thin mb-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem earum dolorum non explicabo excepturi provident.</p>

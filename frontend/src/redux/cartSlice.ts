@@ -44,6 +44,8 @@ const cartSlice = createSlice({
         food.quantity = quantity;
       }
     },
+
+    
   }
 });
 

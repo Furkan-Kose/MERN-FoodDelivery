@@ -2,8 +2,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineShoppingCart, AiOutlineSearch, AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
 import Logout from './Logout';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { jwtDecode } from 'jwt-decode';
+import { JwtPayload } from '../types';
 
 const Navbar = () => {
   const [isDropdownUserOpen, setDropdownUserOpen] = useState(false);
@@ -12,9 +14,11 @@ const Navbar = () => {
 
   const cart = useSelector((state: RootState) => state.cart)
   const quantity = cart.foods.length
-  const dispatch = useDispatch()
   const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.user.user)
+  const user = useSelector((state: any) => state.user.user)
+  const decodedToken: JwtPayload | null = user ? jwtDecode(user.token) : null;
+  const isAdmin = decodedToken?.isAdmin;
+  const userId = decodedToken?.userId
 
   const toggleDropdownUser = () => {
     setDropdownUserOpen(!isDropdownUserOpen);
@@ -29,7 +33,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='bg-orange-500 text-white'>
+    <div className='bg-orange-500 text-white max-w-[1440px] mx-auto'>
       <div className='container mx-auto flex justify-between items-center p-4'>
         <div onClick={toggleDropdownMenu} className='lg:hidden flex items-center space-x-4 text-3xl font-medium'>
             <AiOutlineMenu />
@@ -56,7 +60,7 @@ const Navbar = () => {
             <input 
               className='outline-none max-md:w-32' 
               type="text" 
-              placeholder='Search...' 
+              placeholder='Ara...' 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSearch(searchTerm)}  
@@ -77,7 +81,8 @@ const Navbar = () => {
               <div className='absolute top-16 right-0 xl:right-[5.5rem] w-40 bg-orange-500 text-white shadow-md z-10 opacity-75 text-center text-lg'>
                 {user ? (
                   <>
-                    <Link to="/profile" className='block p-2 hover:bg-gray-700'>Profil</Link>
+                    <Link to={`/profile/${userId}`} className='block p-2 hover:bg-gray-700'>Profil</Link>
+                    {isAdmin && <button onClick={()=>window.location.pathname="/admin"} className='block p-2 hover:bg-gray-700 w-full'>Admin</button>}
                     <Logout/>
                   </>
                   ) : (
