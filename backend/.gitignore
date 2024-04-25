@@ -1,0 +1,39 @@
+# Node.js için varsayılan .gitignore
+
+node_modules/
+npm-debug.log
+
+# Yerel yapılandırmalar
+.env
+
+# Mac için özel dosyalar
+.DS_Store
+
+# Log dosyaları
+logs
+*.log
+
+# Geçici dosyalar
+*.tmp
+
+# IDE'lerin veya metin editörlerinin oluşturduğu dosyalar
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.komodo*
+
+# Proje bağımlılıklarının oluşturduğu dosyalar
+*.npm
+*.lock
+*.yarn
+yarn-debug.log*
+yarn-error.log*
+
+# Herhangi bir dosyada belirli bir kelimeyi ara
+/tespitlenenKelime/
+
+# Otomatik oluşturulan dosyalar veya klasörler
+/dist/
+/build/
+*.pem
