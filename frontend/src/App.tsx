@@ -15,14 +15,12 @@ import UpdateFood from './pages/admin/UpdateFood';
 import AddUser from './pages/admin/AddUser';
 import UpdateUser from './pages/admin/UpdateUser';
 import NotFound from './pages/NotFound';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Sidebar from './components//admin/Sidebar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from './redux/userSlice';
 import { useEffect } from 'react';
-import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from './types';
+import Layout from './Layout';
+import AdminLayout from './AdminLayout';
+import ProtectedRoute from './ProtectedRoute';
 
 const App = () => {
 
@@ -37,51 +35,34 @@ const App = () => {
     }
   }, [dispatch]);
 
-  const user = useSelector((state: any) => state.user.user);
-
-  const decodedToken: JwtPayload | null = user ? jwtDecode(user.token) : null;
-
-  const isAdmin = decodedToken?.isAdmin;
-
-  const isNotAdminPage = () => {
-    const currentPath = window.location.pathname;
-    return !currentPath.startsWith('/admin');
-  }
-
   return (
     <Router>
-      {isNotAdminPage() && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/foods" element={<Foods />} />
-        <Route path="/food/:id" element={<FoodDetails />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        {isAdmin && (
-          <Route
-            path="/admin/*"
-            element={
-              <div className="bg-slate-800 w-full min-h-screen flex">
-                <Sidebar />
-                <Routes>
-                  <Route index element={<Admin />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="foods" element={<AdminFoods />} />
-                  <Route path="foods/add" element={<AddFood />} />
-                  <Route path="foods/:id" element={<UpdateFood />} />
-                  <Route path="users/add" element={<AddUser />} />
-                  <Route path="users/:id" element={<UpdateUser />} />
-                </Routes>
-              </div>
-            }
-          />
-        )}
+        <Route path="/" element={<Layout />} >
+          <Route index element={<Home />} />
+          <Route path="/foods" element={<Foods />} />
+          <Route path="/food/:id" element={<FoodDetails />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile/:id" element={<Profile />} />
+        </Route>
+        <Route path='/admin' element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }>
+          <Route index element={<Admin />} />
+          <Route path="users" element={<Users />} />
+          <Route path="foods" element={<AdminFoods />} />
+          <Route path="foods/add" element={<AddFood />} />
+          <Route path="foods/:id" element={<UpdateFood />} />
+          <Route path="users/add" element={<AddUser />} />
+          <Route path="users/:id" element={<UpdateUser />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {isNotAdminPage() && <Footer />}
     </Router>
   );
 };
